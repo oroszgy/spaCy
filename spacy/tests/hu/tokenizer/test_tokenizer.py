@@ -210,7 +210,8 @@ _QUOTE_TESTS = [('Az "Ime, hat"-ban irja.', ['Az', '"', 'Ime', ',', 'hat', '"', 
                 ('"Ime, hat"-ban irja.', ['"', 'Ime', ',', 'hat', '"', '-ban', 'irja', '.']),
                 ('Az "Ime, hat".', ['Az', '"', 'Ime', ',', 'hat', '"', '.']),
                 ('Egy 24"-os monitor.', ['Egy', '24', '"', '-os', 'monitor', '.']),
-                ("A don't van.", ['A', "don't", 'van', '.'])]
+                ("A don't van.", ['A', "don't", 'van', '.']),
+                ('Az "Addig élj!"-t', ['Az', '"', 'Addig', 'élj', '!', '"', '-t'])]
 
 _DOT_TESTS = [('N. kormányzósági\nszékhely.', ['N.', 'kormányzósági', 'székhely', '.']),
               ('A .hu egy tld.', ['A', '.hu', 'egy', 'tld', '.']),
