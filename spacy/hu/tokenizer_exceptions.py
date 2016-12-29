@@ -107,6 +107,7 @@ Tel.
 Ty.
 Tyr.
 Ui.
+Ut.
 Vcs.
 Vhr.
 X.Y.
@@ -219,6 +220,7 @@ gimn.
 gk.
 gkv.
 gondn.
+Gr.
 gr.
 grav.
 gy.
@@ -245,6 +247,7 @@ ht.
 htb.
 hv.
 hőm.
+ie.
 i.e.
 i.sz.
 id.
@@ -281,6 +284,7 @@ jún.
 k.
 karb.
 kat.
+kath.
 kb.
 kcs.
 kd.
@@ -296,6 +300,7 @@ kk.
 kkt.
 klin.
 kp.
+Kr.
 krt.
 kt.
 ktsg.
@@ -370,6 +375,7 @@ nov.
 nu.
 ny.
 nyilv.
+Nyrt.
 nyrt.
 nyug.
 o.
@@ -427,6 +433,7 @@ sa.
 sel.
 sgt.
 sm.
+St.
 st.
 stat.
 stb.
@@ -499,11 +506,14 @@ vs.
 vsz.
 vv.
 vál.
+várm.
+Várm.
 vízv.
 vö.
 w.
 y.
 z.
+Zrt.
 zrt.
 zs.
 Ész.
