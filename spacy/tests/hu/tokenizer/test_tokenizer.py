@@ -86,14 +86,15 @@ _NUMBER_TESTS = [('A 2b van.', ['A', '2b', 'van', '.']),
                  ('A -23,12 van.', ['A', '-23,12', 'van', '.']),
                  ('A -23,12-ben van.', ['A', '-23,12-ben', 'van', '.']),
                  ('A -23,12-ben.', ['A', '-23,12-ben', '.']),
-                 ('A 2+3 van.', ['A', '2', '+', '3', 'van', '.']),
-                 ('A 2<3 van.', ['A', '2', '<', '3', 'van', '.']),
-                 ('A 2=3 van.', ['A', '2', '=', '3', 'van', '.']),
-                 ('A 2÷3 van.', ['A', '2', '÷', '3', 'van', '.']),
+                 ('A 2+3 van.', ['A', '2' '+' '3', 'van', '.']),
+                 ('A 2<3 van.', ['A', '2' '<' '3', 'van', '.']),
+                 ('A 2=3 van.', ['A', '2' '=' '3', 'van', '.']),
+                 ('A 2÷3 van.', ['A', '2' '÷' '3', 'van', '.']),
+                 ('A (2÷3)-2/5=1 van.', ['A', '2', '÷', '3', 'van', '.']),
                  ('A 2 +3 van.', ['A', '2', '+3', 'van', '.']),
                  ('A 2+ 3 van.', ['A', '2', '+', '3', 'van', '.']),
                  ('A 2 + 3 van.', ['A', '2', '+', '3', 'van', '.']),
-                 ('A 2*3 van.', ['A', '2', '*', '3', 'van', '.']),
+                 ('A 2*3 van.', ['A', '2' '*' '3', 'van', '.']),
                  ('A 2 *3 van.', ['A', '2', '*', '3', 'van', '.']),
                  ('A 2* 3 van.', ['A', '2', '*', '3', 'van', '.']),
                  ('A 2 * 3 van.', ['A', '2', '*', '3', 'van', '.']),
@@ -229,6 +230,15 @@ _DOT_TESTS = [('N. kormányzósági\nszékhely.', ['N.', 'kormányzósági', 'sz
               ('Valami ...', ['Valami', '...']),
               ('Valami ... más.', ['Valami', '...', 'más', '.'])]
 
+_WIKI_TESTS = [
+    ('!"', ['!', '"']),
+    ('!"-lel', ['!', '"', '-lel']),
+    ('""-sorozat ', ['"', '"', '-sorozat']),
+    ('"(Köszönöm', ['"', '(', 'Köszönöm']),
+    ('(törvénykönyv)-ben ', ['(', 'törvénykönyv', ')', '-ben']),
+    ('"(...)"–sokkal ', ['"', '(', '...', ')', '"', '–sokkal']),
+]
+
 
 @pytest.fixture(scope="session")
 def HU():
@@ -240,8 +250,8 @@ def hu_tokenizer(HU):
     return HU.tokenizer
 
 
-@pytest.mark.parametrize(("input", "expected_tokens"),
-                         _DEFAULT_TESTS + _HYPHEN_TESTS + _NUMBER_TESTS + _DOT_TESTS + _QUOTE_TESTS)
+@pytest.mark.parametrize(("input", "expected_tokens"), #_WIKI_TESTS)
+                          _DEFAULT_TESTS + _HYPHEN_TESTS + _NUMBER_TESTS + _DOT_TESTS + _QUOTE_TESTS)
 def test_testcases(hu_tokenizer, input, expected_tokens):
     tokens = hu_tokenizer(input)
     token_list = [token.orth_ for token in tokens if not token.is_space]
