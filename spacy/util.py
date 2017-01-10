@@ -32,8 +32,11 @@ def get_lang_class(name):
     return LANGUAGES[lang]
 
 
-def get_data_path():
-    return _data_path
+def get_data_path(require_exists=True):
+    if not require_exists:
+        return _data_path
+    else:
+        return _data_path if _data_path.exists() else None
 
 
 def set_data_path(path):
@@ -54,7 +57,7 @@ def or_(val1, val2):
 
 def match_best_version(target_name, target_version, path):
     path = path if not isinstance(path, basestring) else pathlib.Path(path)
-    if not path.exists():
+    if path is None or not path.exists():
         return None
     matches = []
     for data_name in path.iterdir():
@@ -94,8 +97,13 @@ def read_regex(path):
 
 
 def compile_prefix_regex(entries):
-    expression = '|'.join(['^' + re.escape(piece) for piece in entries if piece.strip()])
-    return re.compile(expression)
+    if '(' in entries:
+        # Handle deprecated data
+        expression = '|'.join(['^' + re.escape(piece) for piece in entries if piece.strip()])
+        return re.compile(expression)
+    else:
+        expression = '|'.join(['^' + piece for piece in entries if piece.strip()])
+        return re.compile(expression)
 
 
 def compile_suffix_regex(entries):

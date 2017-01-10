@@ -4,8 +4,24 @@ from spacy.tokens import Doc
 from spacy.en import English
 import numpy
 from spacy.attrs import HEAD
+from ...vocab import Vocab
+from ...tokens.doc import Doc
 
 import pytest
+
+def test_tokens_compare_by_string_position():
+    vocab = Vocab()
+    doc = Doc(vocab, [u'one', u'two', u'three'])
+    # Get the tokens in this order, so their ID ordering doesn't match the idx
+    three = doc[-1]
+    two = doc[-2]
+    one = doc[-1]
+    one, two, three = doc
+    assert one < two < three
+    assert not one > two
+    assert two > one
+    assert two <= three
+    assert three >= one
 
 
 @pytest.mark.models
